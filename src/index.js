@@ -3,6 +3,8 @@ import galleryCards from './templates/card.hbs';
 import PicturesAPIService from './js/pictures-api-service';
 //import axios from 'axios';
 import LoadMoreBtn from './js/load-more';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const refs = {
   form: document.querySelector('.search-form'),
@@ -33,16 +35,16 @@ const onFormSubmit = async e => {
 
 refs.form.addEventListener('submit', onFormSubmit);
 //refs.loadBtn.addEventListener('click', onLoadMore);
-loadMoreBtn.refs.button.addEventListener('click', onLoadMore);
+loadMoreBtn.refs.button.addEventListener('click', fetchImg);
 
 //refs.loadBtn.addEventListener('click', () => console.log('click'));
-async function onLoadMore() {
-  //loadMoreBtn.disable();
-  //const response = await picturesAPIService.fetchImages();
-  //loadMoreBtn.enable();
-  //appendImagesMarkup(response);
-  fetchImg();
-}
+//async function onLoadMore() {
+//  //loadMoreBtn.disable();
+//  //const response = await picturesAPIService.fetchImages();
+//  //loadMoreBtn.enable();
+//  //appendImagesMarkup(response);
+//  fetchImg();
+//}
 
 function appendImagesMarkup(images) {
   refs.galleryEl.insertAdjacentHTML('beforeend', galleryCards(images));
@@ -58,3 +60,12 @@ async function fetchImg() {
   loadMoreBtn.enable();
   appendImagesMarkup(response);
 }
+
+const lightbox = new SimpleLightbox('.gallery a', {
+  captions: true,
+  captionSelector: 'img',
+  captionType: 'attr',
+  captionsData: 'alt',
+  captionPosition: 'bottom',
+  captionDelay: 250,
+});
