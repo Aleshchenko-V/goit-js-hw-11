@@ -1,3 +1,4 @@
+// old file, which replaced by class
 import axios from 'axios';
 
 //const PRIVATE_KEY = '28409097-bdffd10554a2c77d4883d4778';

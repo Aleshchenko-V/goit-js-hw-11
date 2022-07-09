@@ -23,9 +23,9 @@ export default class PicturesAPIService {
     return axios
       .get(URL, { params: queryParams })
       .then(response => {
-        console.log('response', response.data.hits);
+        console.log('response', response);
         this.incrementPage();
-        return response.data.hits;
+        return response;
       })
       .catch(console.error);
   }
